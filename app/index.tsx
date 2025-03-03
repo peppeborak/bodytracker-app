@@ -19,6 +19,7 @@ export default function Index() {
   if (!hasPermission) return
   if (device == null) return
 
+  
 
   return (
     <View
@@ -28,7 +29,11 @@ export default function Index() {
         alignItems: 'center',
       }}
     >
-      <Camera device={device} style={StyleSheet.absoluteFill} isActive={true} />
+      <Camera
+        device={device}
+        style={StyleSheet.absoluteFill}
+        isActive={true}
+      />
     </View>
   )
 }
