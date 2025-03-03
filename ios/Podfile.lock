@@ -1972,6 +1972,28 @@ PODS:
   - TensorFlowLiteC (2.17.0):
     - TensorFlowLiteC/Core (= 2.17.0)
   - TensorFlowLiteC/Core (2.17.0)
+  - vision-camera-resize-plugin (3.2.0):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.01.01.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - VisionCamera
+    - Yoga
   - VisionCamera (4.6.4):
     - VisionCamera/Core (= 4.6.4)
     - VisionCamera/FrameProcessors (= 4.6.4)
@@ -2080,6 +2102,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - vision-camera-resize-plugin (from `../node_modules/vision-camera-resize-plugin`)
   - VisionCamera (from `../node_modules/react-native-vision-camera`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -2272,6 +2295,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  vision-camera-resize-plugin:
+    :path: "../node_modules/vision-camera-resize-plugin"
   VisionCamera:
     :path: "../node_modules/react-native-vision-camera"
   Yoga:
@@ -2371,6 +2396,7 @@ SPEC CHECKSUMS:
   RNScreens: 4a5ab20b324ed1e3fe3862796b8f8e0a6208c415
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   TensorFlowLiteC: eac6d689a8d391d1b202dc59e3d9165ba64aaf73
+  vision-camera-resize-plugin: f9780fe30e080f8f00b9ab7c1d1fb75efafc7412
   VisionCamera: 52b101a7fa0a70ff455163c5a121d8dfe9871ab7
   Yoga: 90d80701b27946c4b23461c00a7207f300a6ff71
 

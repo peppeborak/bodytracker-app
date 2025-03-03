@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import * as React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import {
   Tensor,
   TensorflowModel,
@@ -12,6 +12,7 @@ import {
   useCameraPermission,
   useFrameProcessor,
 } from 'react-native-vision-camera'
+import { useResizePlugin } from 'vision-camera-resize-plugin'
 
 function tensorToString(tensor: Tensor): string {
   return `\n  - ${tensor.dataType} ${tensor.name}[${tensor.shape}]`
@@ -27,6 +28,7 @@ function modelToString(model: TensorflowModel): string {
 export default function Index() {
   const { hasPermission, requestPermission } = useCameraPermission()
   const device = useCameraDevice('back')
+  const { width, height } = Dimensions.get('window')
 
   const model = useTensorflowModel(
     require('../assets/movenet-singlepose-lightning-tflite-int8.tflite')
@@ -45,10 +47,35 @@ export default function Index() {
   if (!hasPermission) return
   if (device == null) return
 
-  const frameProcessor = useFrameProcessor((frame) => {
-    'worklet'
-    console.log(`Frame: ${frame.width}x${frame.height} (${frame.pixelFormat})`)
-  }, [])
+  const { resize } = useResizePlugin()
+
+  const frameProcessor = useFrameProcessor(
+    (frame) => {
+      'worklet'
+      if (actualModel == null) {
+        // model is still loading...
+        return
+      }
+
+      const resized = resize(frame, {
+        scale: {
+          width: 192,
+          height: 192,
+        },
+        pixelFormat: 'rgb',
+        dataType: 'uint8',
+      })
+      const result = actualModel.runSync([resized])
+      const keypoints = result[0]
+      // console.log(keypoints)
+      const noseY = Number(keypoints['0']) * height
+      const noseX = Number(keypoints['1']) * width 
+      const noseConfidence = keypoints['2']
+
+      console.log(noseX, noseY, noseConfidence)
+    },
+    [actualModel]
+  )
 
   return (
     <View
