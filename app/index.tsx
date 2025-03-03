@@ -19,7 +19,10 @@ export default function Index() {
   if (!hasPermission) return
   if (device == null) return
 
-  
+  const frameProcessor = useFrameProcessor((frame) => {
+    'worklet'
+    console.log(`Frame: ${frame.width}x${frame.height} (${frame.pixelFormat})`)
+  }, [])
 
   return (
     <View
@@ -33,6 +36,7 @@ export default function Index() {
         device={device}
         style={StyleSheet.absoluteFill}
         isActive={true}
+        frameProcessor={frameProcessor}
       />
     </View>
   )

@@ -10,6 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
+      "newArchEnabled": false,
       "bundleIdentifier": "com.peppzor.bestbodytrackerapp"
     },
     "android": {
