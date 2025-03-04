@@ -57,8 +57,8 @@ export default function BodyTracker() {
         dataType: 'uint8',
       })
       const result = actualModel.runSync([resized])
-      const keypoints = Array.from(result[0] as BigInt64Array).map(Number)
-      // console.log(keypoints)
+      const keypoints = Object.values(result[0])
+       console.log(keypoints)
 
       const parsedKeypoints = parseKeypoints(keypoints, width, height)
       drawKeypointsToCanvas(parsedKeypoints, paint, frame)
