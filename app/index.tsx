@@ -33,7 +33,7 @@ export default function Index() {
   const { width, height } = Dimensions.get('window')
 
   const model = useTensorflowModel(
-    require('../../assets/movenet-singlepose-lightning-tflite-int8.tflite')
+    require('../assets/movenet-singlepose-lightning-tflite-int8.tflite')
   )
   const actualModel = model.state === 'loaded' ? model.model : undefined
 
