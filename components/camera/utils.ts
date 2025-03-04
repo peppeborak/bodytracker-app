@@ -44,20 +44,18 @@ export function modelToString(model: TensorflowModel): string {
 }
 
 export function parseKeypoints(
-  keypointsArray: number[],
+  keypointsObj: any,
   width: number,
   height: number
 ): BodyPartsArray {
   'worklet'
   const result: BodyPartsArray = []
 
-  if (keypointsArray.length === 0) return result
-
   for (let i = 0; i < bodyParts.length; i++) {
     const part = bodyParts[i]
-    const y = keypointsArray[i * 3]
-    const x = keypointsArray[i * 3 + 1]
-    const confidence = keypointsArray[i * 3 + 2]
+    const y = keypointsObj[(i * 3).toString()]
+    const x = keypointsObj[(i * 3 + 1).toString()]
+    const confidence = keypointsObj[(i * 3 + 2).toString()]
 
     if (y !== undefined && x !== undefined && confidence !== undefined) {
       result.push({
