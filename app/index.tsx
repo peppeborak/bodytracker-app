@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+import { Skia, Canvas, Paint, Color } from '@shopify/react-native-skia'
 import * as React from 'react'
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import {
@@ -11,6 +12,7 @@ import {
   useCameraDevice,
   useCameraPermission,
   useFrameProcessor,
+  useSkiaFrameProcessor,
 } from 'react-native-vision-camera'
 import { useResizePlugin } from 'vision-camera-resize-plugin'
 
@@ -48,14 +50,18 @@ export default function Index() {
   if (device == null) return
 
   const { resize } = useResizePlugin()
+  const paint = Skia.Paint()
+  paint.setColor(Skia.Color('red'))
 
-  const frameProcessor = useFrameProcessor(
+  const frameProcessor = useSkiaFrameProcessor(
     (frame) => {
       'worklet'
       if (actualModel == null) {
         // model is still loading...
         return
       }
+
+      frame.render()
 
       const resized = resize(frame, {
         scale: {
@@ -67,12 +73,11 @@ export default function Index() {
       })
       const result = actualModel.runSync([resized])
       const keypoints = result[0]
-      // console.log(keypoints)
-      const noseY = Number(keypoints['0']) * height
-      const noseX = Number(keypoints['1']) * width 
-      const noseConfidence = keypoints['2']
+      console.log(keypoints)
 
-      console.log(noseX, noseY, noseConfidence)
+      const rect = Skia.XYWHRect(150, 150, 50, 50)
+      frame.drawRect(rect, paint)
+
     },
     [actualModel]
   )
