@@ -29,11 +29,11 @@ function modelToString(model: TensorflowModel): string {
 
 export default function Index() {
   const { hasPermission, requestPermission } = useCameraPermission()
-  const device = useCameraDevice('back')
+  const device = useCameraDevice('front')
   const { width, height } = Dimensions.get('window')
 
   const model = useTensorflowModel(
-    require('../assets/movenet-singlepose-lightning-tflite-int8.tflite')
+    require('../../assets/movenet-singlepose-lightning-tflite-int8.tflite')
   )
   const actualModel = model.state === 'loaded' ? model.model : undefined
 
@@ -73,11 +73,24 @@ export default function Index() {
       })
       const result = actualModel.runSync([resized])
       const keypoints = result[0]
-      console.log(keypoints)
+      // console.log(keypoints)
 
-      const rect = Skia.XYWHRect(150, 150, 50, 50)
-      frame.drawRect(rect, paint)
+      const noseY = Number(keypoints['0']) * height
+      const noseX = Number(keypoints['1']) * width
+      const noseConfidence = Number(keypoints['2'])
+      const leftEyeY = Number(keypoints['3']) * height
+      const leftEyeX = Number(keypoints['4']) * width
+      const leftEyeConfidence = Number(keypoints['5'])
 
+
+      if (noseConfidence > 0.1) {
+        const noseRect = Skia.XYWHRect(noseX, noseY, 50, 50)
+        frame.drawRect(noseRect, paint)
+      }
+      if (leftEyeConfidence > 0.1) {
+        const eyeRect = Skia.XYWHRect(leftEyeX, leftEyeY, 50, 50)
+        frame.drawRect(eyeRect, paint)
+      }
     },
     [actualModel]
   )
