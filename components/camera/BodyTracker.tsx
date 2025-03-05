@@ -12,6 +12,7 @@ import {
 import { useResizePlugin } from 'vision-camera-resize-plugin'
 import { drawKeypointsToCanvas, modelToString, parseKeypoints } from './utils'
 
+
 export default function BodyTracker() {
   const { hasPermission, requestPermission } = useCameraPermission()
   const device = useCameraDevice('front')
@@ -31,8 +32,8 @@ export default function BodyTracker() {
     requestPermission()
   }, [requestPermission])
 
-  if (!hasPermission) return
-  if (device == null) return
+  if (!hasPermission) return <Text>App does not have permission to camera</Text>
+  if (device == null) return <Text>No Camera available</Text>
 
   const { resize } = useResizePlugin()
   const paint = Skia.Paint()
@@ -57,9 +58,8 @@ export default function BodyTracker() {
         dataType: 'uint8',
       })
       const result = actualModel.runSync([resized])
-      const keypoints = result[0]
 
-      const parsedKeypoints = parseKeypoints(keypoints, width, height)
+      const parsedKeypoints = parseKeypoints(result[0], width, height)
       drawKeypointsToCanvas(parsedKeypoints, paint, frame)
       
     },
