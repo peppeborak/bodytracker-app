@@ -1,74 +1,95 @@
-# Overview solution:
+# Body Tracker App 🧑‍💻📱
 
+## Overview Solution:
 
 For the this body tracking application, I used react-native-vision-camera to efficiently access the camera stream. This library provided high performance and was highly compatible with a Frame Processor, allowing seamless integration with TensorFlow Lite (TFLite) for real-time body part detection.
+
 To overlay visuals on top of the camera feed, I utilized SkiaFrameProcessor, which enabled smooth and efficient drawing.
 
 
-# How to setup this app:
+## Trade-offs ⚖️:
 
-Prerequisites
+- **react-native-vision-camera vs expo-camera**  
+  I traded **ease of use** for better performance and advanced features like frame processors and camera settings.
+
+- **SkiaFrameProcessor vs FrameProcessor**  
+  I traded **stability** for the ability to draw directly on top of the camera feed.
+
+- **TensorFlow Lite vs tensorflow-react-native**  
+  I traded **potential compatibility issues** for a more modern, optimized library (TensorFlow Lite) that provides better performance and compatibility.
+
+## Quality Assurance ✅:
+
+- Git
+- Prettier 
+- ESLint
+- Modular-based 
+
+## Planned Improvements 🔧:
+
+- End-to-end tests using **Cypress** 
+- Unit tests with **Jest** 
+- Try out different **TensorFlow models** for enhanced accuracy 
+- Add a button to toggle drawing overlays on the camera feed 
+- Improve drawing of skeletons and keypoints between them 
+
+## How to Setup This App 🔧:
+
+### Prerequisites 📝
 Make sure you have the following installed:
 
-Node.js (Latest LTS recommended)
-npm or yarn
-React Native CLI
-xcode
+- Node.js (Latest LTS recommended) 
+- npm
+- React Native CLI 
+- Xcode 
+- Apple Developer Account (A free account is fine) 
 
-Iphone 
+### Setup Instructions:
 
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/peppeborak/bodytracker-app
+   cd bodytracker-app
+   ```
 
-git clone <your-repo-url>
-cd bodytracker-app
+   ```bash
+   npm install
+   npx expo prebuild
+   ```
+   ```bash
+   cd ios && pod install
+   open bodytrackerapp.xcworkspace
+   cd ..
+   ```
+   ```bash
+   npx expo start --clear --dev-client
+   ```
 
-npm install
+### Configure Signing & Capabilities in Xcode:
 
-npx expo prebuild
+1. **Apple Developer Account**: Ensure you’re signed in with your Apple Developer account in Xcode. Navigate to **Xcode > Preferences > Accounts**.
 
-cd ios && pod install 
+2. **Signing & Capabilities**: In the "Signing & Capabilities" tab of your project settings, make sure the correct development team is selected. If you’re using a free Apple Developer account, you’ll need to select **"Automatically manage signing"**.
 
-open bodytracker-app.
+3. **Device Selection**: Choose your physical device from the top dropdown menu.
 
+4. Press **Cmd + R** or click the play button to build and run the app on your phone 📱.
 
-
-
-# Trade-offs:
-
-react-native-vision-camera vs expo-camera 
-I traded **easy-use** for better performance, features like frameprocessor and camera settings
-
-
-
-SkiaFrameProcessor vs FrameProcessor 
-I traded **stability** for being able to draw on top of the camera.
-
-
-
-TensorFlow Lite vs tensorflow-react-native
-I traded **potential compatibility issues** for a more modern library instead.
-
-
-
-# Quality ensurance
-Git
-Prettier
-Eslint
-module based
+The app should now be running on your device! 🎉
 
 
-# Improvements
-
-Und-to-end tests using cypress
-
-Unit-tests with jest
-
-Try different tensorflow model
-
-Add button to toggle drawings
-
-Add drawings betweek the keypoints(skeleton)
-
-
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
+---
 
 
 
