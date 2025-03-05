@@ -36,13 +36,17 @@ To overlay visuals on top of the camera feed, I utilized SkiaFrameProcessor, whi
 ## How to Setup This App 🔧:
 
 ### Prerequisites 📝
-Make sure you have the following installed:
+Make sure you have the following:
 
 - Node.js (Latest LTS recommended) 
 - npm
 - React Native CLI 
 - Xcode 
 - Apple Developer Account (A free account is fine) 
+- Mac
+- Iphone
+
+This only works for ios for now.
 
 ### Setup Instructions:
 
