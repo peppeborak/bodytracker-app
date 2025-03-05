@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "best-bodytracker-app",
-    "slug": "best-bodytracker-app",
+    "name": "bodytrackerapp",
+    "slug": "bodytrackerapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -11,14 +11,14 @@
     "ios": {
       "supportsTablet": true,
       "newArchEnabled": false,
-      "bundleIdentifier": "com.peppzor.bestbodytrackerapp"
+      "bundleIdentifier": "com.example.bodytrackerapp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.peppzor.bestbodytrackerapp"
+      "package": "com.example.bodytrackerapp"
     },
     "web": {
       "bundler": "metro",
