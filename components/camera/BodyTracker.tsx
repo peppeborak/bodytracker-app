@@ -60,8 +60,8 @@ export default function BodyTracker() {
       const result = actualModel.runSync([resized])
 
       const parsedKeypoints = parseKeypoints(result[0], width, height)
-      drawKeypointsToCanvas(parsedKeypoints, paint, frame)
-      
+      drawKeypointsToCanvas(parsedKeypoints, paint, frame, 0.2)
+
     },
     [actualModel]
   )

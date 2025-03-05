@@ -73,11 +73,14 @@ export function parseKeypoints(
 export function drawKeypointsToCanvas(
   keypoints: Keypoint[],
   paint: SkPaint,
-  frame: DrawableFrame
+  frame: DrawableFrame,
+  minConfidence: number
 ) {
   'worklet'
   for (const part of keypoints) {
-    const square = Skia.XYWHRect(part.x, part.y, 50, 50)
-    frame.drawRect(square, paint)
+    if (part.confidence > minConfidence) {
+      const square = Skia.XYWHRect(part.x, part.y, 50, 50)
+      frame.drawRect(square, paint)
+    }
   }
 }
