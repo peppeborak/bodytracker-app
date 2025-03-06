@@ -32,6 +32,7 @@ To overlay visuals on top of the camera feed, I utilized SkiaFrameProcessor, whi
 - Try out different **TensorFlow models** for enhanced accuracy 
 - Add a button to toggle drawing overlays on the camera feed 
 - Improve drawing of skeletons and keypoints between them 
+- Connect a database
 
 ## How to Setup This App 🔧:
 
